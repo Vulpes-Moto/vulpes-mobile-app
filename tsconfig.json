@@ -13,5 +13,5 @@
     "**/*.tsx",
     ".expo/types/**/*.ts",
     "expo-env.d.ts"
-, "app/(tabs)/scanner.jsx", "app/(tabs)/scannedList.jsx"  ]
+, "app/(tabs)/scanner.jsx", "app/(tabs)/scannedList.jsx", "app/(auth)/_layout.jsx"  ]
 }

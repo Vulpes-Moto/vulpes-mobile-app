@@ -1,12 +1,20 @@
-import { Image } from 'expo-image';
-import { StyleSheet } from 'react-native';
-
 import { HelloWave } from '@/components/HelloWave';
 import ParallaxScrollView from '@/components/ParallaxScrollView';
 import { ThemedText } from '@/components/ThemedText';
 import { ThemedView } from '@/components/ThemedView';
+import { logOut, refreshUser } from '@/store/slices/userSlice';
+import { Image } from 'expo-image';
+import { useEffect } from 'react';
+import { Pressable, StyleSheet } from 'react-native';
+import { useDispatch } from 'react-redux';
 
 export default function HomeScreen() {
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(refreshUser())
+    console.log('user was refreshed');
+  }, [dispatch]);
+
   return (
     <ParallaxScrollView
       headerBackgroundColor={{ light: '#A1CEDC', dark: '#1D3D47' }}
@@ -37,6 +45,12 @@ export default function HomeScreen() {
         <ThemedText>
           {`Помни, сканы попадут в базу только после сохранения.`}
         </ThemedText>
+      </ThemedView>
+      <ThemedView style={styles.stepContainer}>
+        <ThemedText type="subtitle">Step 4: Enjoy!</ThemedText>
+        <Pressable onPress={() => {dispatch(logOut()); dispatch(refreshUser())}}>
+          <ThemedText>Log Out</ThemedText>
+        </Pressable>
       </ThemedView>
     </ParallaxScrollView>
   );
